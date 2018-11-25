@@ -40,6 +40,8 @@
         name: ((network_name))
       gateway: ((network_gw))  
       range: ((network_range))
+      dns:
+      - ((dns)) 
       reserved:
       - ((network_gw)) 
       static:

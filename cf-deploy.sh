@@ -46,6 +46,6 @@ pushd cf-deployment
 	export STEMCELL_VERSION=$(bosh interpolate cf-deployment.yml --path=/stemcells/alias=default/version)
 	bosh upload-stemcell https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-xenial-go_agent?v=${STEMCELL_VERSION}
 
-	bosh -d cf deploy  cf-deployment.yml -o operations/bosh-lite.yml -o operations/use-compiled-releases.yml -v system_domain=$CFDOMAIN --vars-store ~/cf-creds.yml  --no-redact  -n
+	bosh -d cf deploy cf-deployment.yml -o operations/bosh-lite.yml -o operations/use-compiled-releases.yml -v system_domain=$CFDOMAIN --vars-store ~/cf-creds.yml  -n
 popd
 
