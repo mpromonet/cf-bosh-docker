@@ -7,7 +7,7 @@ jobs:
       - run: git clone https://github.com/cloudfoundry/bosh-deployment
       - run: git clone https://github.com/cloudfoundry/cf-deployment
       - run: sudo chmod a+rw /var/run/docker.sock
-      - run: export HOST_IP=$(hostname -I | awk '{print $1}')
+      - run: export CFDOMAIN=$(hostname -I | awk '{print $1}').xip.io
       - run: sudo wget https://github.com/cloudfoundry/bosh-cli/releases/download/v5.4.0/bosh-cli-5.4.0-linux-amd64 -O /usr/bin/bosh && sudo chmod +x  /usr/bin/bosh
       - run: ./cf-deploy.sh 
       - run: sudo wget "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" -O /usr/bin/cf && sudo chmod +x  /usr/bin/cf
