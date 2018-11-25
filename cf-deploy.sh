@@ -7,6 +7,7 @@ export NETWORK_NAME=bosh_network
 export NETWORK_RANGE=10.244.0.0/20
 export NETWORK_GW=10.244.0.1
 export NETWORK_STATIC=10.244.0.2-10.244.0.127
+export DNS="[8.8.8.8]"
 
 pushd bosh-deployment > /dev/null
 	bosh int bosh.yml \
@@ -40,7 +41,7 @@ source ~/boshenv
 pushd cf-deployment
 	bosh update-runtime-config ~/bosh-deployment/runtime-configs/dns.yml --name dns --vars-store ~/dns-creds.yml  --no-redact -n
 
-	bosh int iaas-support/bosh-lite/cloud-config.yml -o ../overide.yml -v network_name=${NETWORK_NAME}  -v network_range=${NETWORK_RANGE} -v network_gw=${NETWORK_GW} -v network_static=${NETWORK_STATIC}>  cloud-config.yml
+	bosh int iaas-support/bosh-lite/cloud-config.yml -o ../overide.yml -v network_name=${NETWORK_NAME}  -v network_range=${NETWORK_RANGE} -v network_gw=${NETWORK_GW} -v network_static=${NETWORK_STATIC} -v dns=${DNS} >  cloud-config.yml
 	bosh update-cloud-config cloud-config.yml -n
 
 	export STEMCELL_VERSION=$(bosh interpolate cf-deployment.yml --path=/stemcells/alias=default/version)
