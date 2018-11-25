@@ -1,0 +1,45 @@
+- type: replace
+  path: /vm_extensions/name=ssh-proxy-and-router-lb/cloud_properties?
+  value:
+    ports:
+    - 80/tcp
+    - 443/tcp
+    - 2222/tcp
+    PortBindings:
+      443/tcp:
+      - HostPort: 443/tcp
+      2222/tcp:
+      - HostPort: 2222/tcp
+
+- type: replace
+  path: /vm_extensions/name=cf-tcp-router-network-properties/cloud_properties?
+  value:
+    ports:
+    - 1024/tcp
+    - 1025/tcp
+    - 1026/tcp
+    - 1027/tcp
+    - 1028/tcp
+    - 1029/tcp
+    - 1030/tcp
+    - 1031/tcp
+    - 1032/tcp
+    - 1033/tcp
+    - 1034/tcp
+    - 1035/tcp
+    - 1036/tcp
+    - 1037/tcp
+    - 1038/tcp
+    - 1039/tcp
+    
+- type: replace
+  path: /networks/name=default/subnets?
+  value:  
+    - azs: [z1, z2, z3]
+      cloud_properties:
+        name: ((network_name))
+      gateway: ((network_gw))  
+      range: ((network_range))
+      dns: ((dns))
+      static:
+      -  ((network_gw))  - ((network_gw))00
