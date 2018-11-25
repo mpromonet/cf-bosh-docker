@@ -41,5 +41,5 @@
       gateway: ((network_gw))  
       range: ((network_range))
       dns: ((dns))
-      static:
-      -  ((network_gw))  - ((network_gw))00
+      reserved:
+      - ((network_gw)) 
