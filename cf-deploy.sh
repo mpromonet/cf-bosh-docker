@@ -20,17 +20,16 @@ pushd bosh-deployment > /dev/null
 		
 	bosh create-env bosh-director.yml --vars-store=bosh-creds.yml --state=state.json	
 
-	bosh int bosh-creds.yml --path /director_ssl/ca > "./ca.crt"	      
-	bosh -e "${BOSH_DIRECTOR_IP}" --ca-cert "./ca.crt" alias-env "${BOSH_ENVIRONMENT}"
-
-	cat << EOF > ~/boshenv
-	      export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT}"
-	      export BOSH_CLIENT=admin
-	      export BOSH_CLIENT_SECRET=$(bosh int bosh-creds.yml --path /admin_password)
-	      export BOSH_CA_CERT="~/bosh-deployment/ca.crt"
-	EOF
+	bosh int bosh-creds.yml --path /director_ssl/ca > ~/ca.crt	      
+	bosh -e "${BOSH_DIRECTOR_IP}" --ca-cert ~/ca.crt alias-env "${BOSH_ENVIRONMENT}"
 popd  > /dev/null
 
+cat << EOF > ~/boshenv
+	      export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT}"
+	      export BOSH_CLIENT=admin
+	      export BOSH_CLIENT_SECRET=$(bosh int bosh-deployment/bosh-creds.yml --path /admin_password)
+	      export BOSH_CA_CERT=~/ca.crt
+EOF
 
 # ================== 
 # deploy cf
