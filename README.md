@@ -13,7 +13,7 @@ sudo chmod a+rw /var/run/docker.sock
 
 # set cf IP
 ```
-export HOST_IP=$(hostname -I | awk '{print $1}')
+export CFDOMAIN=$(hostname -I | awk '{print $1}').xip.io
 ```
 
 # deploy CF
@@ -23,12 +23,12 @@ export HOST_IP=$(hostname -I | awk '{print $1}')
 
 # login to cf
 ```
-cf login -a api.$HOST_IP.xip.io -u admin -p $(cat <(bosh int ~/cf-creds.yml --path /cf_admin_password))  --skip-ssl-validation
+cf login -a api.$CFDOMAIN -u admin -p $(cat <(bosh int ~/cf-creds.yml --path /cf_admin_password))  --skip-ssl-validation
 ```
 
 # login to uaa
 ```
-uaac target uaa.$HOST_IPxip.io 
+uaac target uaa.$CFDOMAIN 
 uaac token client get admin -s $(cat <(bosh int ~/cf-creds.yml --path /uaa_admin_client_secret))
 ```
 
