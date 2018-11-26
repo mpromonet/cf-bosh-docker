@@ -11,6 +11,6 @@ jobs:
       - run: sudo wget https://github.com/cloudfoundry/bosh-cli/releases/download/v5.4.0/bosh-cli-5.4.0-linux-amd64 -O /usr/bin/bosh && sudo chmod +x  /usr/bin/bosh
       - run: 
           command: ./cf-deploy.sh 
-          no_output_timeout: 1200
+          no_output_timeout: 3600
       - run: sudo wget "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" -O /usr/bin/cf && sudo chmod +x  /usr/bin/cf
       - run: ./cf-test.sh
