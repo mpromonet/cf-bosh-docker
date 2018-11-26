@@ -39,7 +39,7 @@ EOF
 source ~/boshenv
 
 pushd cf-deployment
-	bosh update-runtime-config ~/bosh-deployment/runtime-configs/dns.yml --name dns --vars-store ~/dns-creds.yml  --no-redact -n
+	bosh update-runtime-config ../bosh-deployment/runtime-configs/dns.yml --name dns --vars-store ~/dns-creds.yml  --no-redact -n
 
 	bosh int iaas-support/bosh-lite/cloud-config.yml -o ../overide.yml -v network_name=${NETWORK_NAME}  -v network_range=${NETWORK_RANGE} -v network_gw=${NETWORK_GW} -v network_static=${NETWORK_STATIC} -v dns=${DNS} >  cloud-config.yml
 	bosh update-cloud-config cloud-config.yml -n
