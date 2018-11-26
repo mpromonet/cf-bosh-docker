@@ -12,5 +12,5 @@ jobs:
       - run: 
           command: ./cf-deploy.sh 
           no_output_timeout: 3600
-      - run: sudo wget "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" -O /usr/bin/cf && sudo chmod +x  /usr/bin/cf
+      - run: wget "https://packages.cloudfoundry.org/stable?release=linux64-binary&source=github" -O - | sudo tar xvz -C /usr/bin
       - run: ./cf-test.sh
