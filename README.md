@@ -1,4 +1,5 @@
 
+[![CircleCI](https://circleci.com/gh/mpromonet/cf-bosh-docker.svg?style=shield)](https://circleci.com/gh/mpromonet/cf-bosh-docker)
 
 # get bosh & cf
 ```
@@ -29,6 +30,6 @@ cf login -a api.$CFDOMAIN -u admin -p $(cat <(bosh int ~/cf-creds.yml --path /cf
 # login to uaa
 ```
 uaac target uaa.$CFDOMAIN 
-uaac token client get admin -s $(cat <(bosh int ~/cf-creds.yml --path /uaa_admin_client_secret))
+uaac token client get admin -s $(cat <(bosh int ~/cf-creds.yml --path /uaa_admin_client_secret)) --skip-ssl-validation
 ```
 
