@@ -22,6 +22,12 @@ export CFDOMAIN=$(hostname -I | awk '{print $1}').xip.io
 ./cf-deploy.sh
 ```
 
+# enable nfs
+```
+bosh -d cf run-errand nfsbrokerpush
+cf enable-service-access nfs
+```
+
 # login to cf
 ```
 cf login -a api.$CFDOMAIN -u admin -p $(cat <(bosh int ~/cf-creds.yml --path /cf_admin_password))  --skip-ssl-validation
