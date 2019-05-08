@@ -21,7 +21,7 @@ pushd bosh-deployment > /dev/null
 		-v network=${NETWORK_NAME} \
 		--vars-store=~/bosh-creds.yml --state=state.json
 		
-	bosh int bosh-creds.yml --path /director_ssl/ca > ~/ca.crt	      
+	bosh int ~/bosh-creds.yml --path /director_ssl/ca > ~/ca.crt	      
 	bosh -e "${BOSH_DIRECTOR_IP}" --ca-cert ~/ca.crt alias-env "${BOSH_ENVIRONMENT}"
 popd  > /dev/null
 
