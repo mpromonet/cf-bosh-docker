@@ -6,7 +6,7 @@ export BOSH_DIRECTOR_IP="10.244.0.3"
 export NETWORK_NAME=bosh_network
 export NETWORK_RANGE=10.244.0.0/20
 export NETWORK_GW=10.244.0.1
-export NETWORK_STATIC=10.244.0.2-10.244.0.127
+export NETWORK_STATIC=10.244.0.10-10.244.0.127
 export DNS="[8.8.8.8]"
 
 pushd bosh-deployment > /dev/null
