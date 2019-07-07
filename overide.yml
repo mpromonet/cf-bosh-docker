@@ -6,6 +6,8 @@
     - 443/tcp
     - 2222/tcp
     PortBindings:
+      80/tcp:
+      - HostPort: 80/tcp    
       443/tcp:
       - HostPort: 443/tcp
       2222/tcp:
